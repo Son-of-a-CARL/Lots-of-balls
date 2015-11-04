@@ -1,73 +1,57 @@
 //declare variables
-float x,x2, y,y2, velX, velY, diam, velX2,velY2,diam2;
+int count=1000;
 
+float[] x=new float[count];
+float[]y=new float[count];
+float[]velX= new float[count];
+float[]velY= new float[count];
+float[] diam= new float [count];
 void setup() {
   //set size of canvas
-  size(800, 600);
-
-  //initialize variables
-  x = width/2;
-  y = height/2;
-  diam = 80;
-  velX = random(-10, 10);
-  velY = random(-10, 10);
-  x2=width/4;
-  y2=height/4;
-  velX2=random(-20,20);
-  velY2=random(-20,20);
-  diam2=80;
+  size(1300,800);
+    int i=0;
+  while (i < count) {
+    //initialize variables
+    x[i] = random(width);
+    y[i] = random(height);
+    diam[i] = random(20);
+    velX[i] = random(-20, 20);
+    velY[i] = random(-20, 20);
+    i++;
+  }
 }
 
 void draw() {
   //draw background to cover previous frame
   background(0);
-  onecircle();
-  secondcircle();
-  }
+  drawcircle();
+}
 
 
 
-  
-  void onecircle() {
 
-  //draw ball
-  ellipse(x, y, diam, diam);
+void drawcircle() {
+  int i =0;
+  for(i=0;i<count;i++) {
+  fill(random(255),random(255),random(255));
+   //draw ball
 
-  //add velocity to position
-  x += velX;
-  y += velY;
+    ellipse(x[i], y[i], diam[i], diam[i]);
 
-  //bounce ball if it hits walls
-  if (x + diam/2 >= width) {
-    velX = -abs(velX);    //if the ball hits the right wall, assign x velocity the negative version of itself
-  } else if (x - diam/2 <= 0) {
-    velX = abs(velX);     //if the ball hits the left wall, assign x velocity the positive version of itself
-  }
-  if (y + diam/2 >= height) {
-    velY = -abs(velY);
-  } else if (y - diam/2 <= 0) {
-    velY = abs(velY);
-  }
-  }
- 
-   
-   
-   void secondcircle() {
-   ellipse(x2, y2, diam2, diam2);
+    //add velocity to position
+    x[i]+= velX[i];
+    y[i] += velY[i];
 
-  //add velocity to position
-  x2 += velX2;
-  y2 += velY2;
-
-  //bounce ball if it hits walls
-  if (x2 + diam2/2 >= width) {
-    velX2 = -abs(velX2);    //if the ball hits the right wall, assign x velocity the negative version of itself
-  } else if (x2 - diam2/2 <= 0) {
-    velX2 = abs(velX2);     //if the ball hits the left wall, assign x velocity the positive version of itself
-  }
-  if (y2 + diam2/2 >= height) {
-    velY2 = -abs(velY2);
-  } else if (y2 - diam2/2 <= 0) {
-    velY2 = abs(velY2);
-  }
+    //bounce ball if it hits walls
+    if (x[i] + diam[i]/2 >= width) {
+      velX[i] = -abs(velX[i]);    //if the ball hits the right wall, assign x velocity the negative version of itself
+    } else if (x[i] - diam[i]/2 <= 0) {
+      velX[i] = abs(velX[i]);     //if the ball hits the left wall, assign x velocity the positive version of itself
+    }
+    if (y[i] + diam[i]/2 >= height) {
+      velY[i] = -abs(velY[i]);
+    } else if (y[i] - diam[i]/2 <= 0) {
+      velY[i] = abs(velY[i]);
+    }
+   }
 }
