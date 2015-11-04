@@ -8,13 +8,13 @@ float[]velY= new float[count];
 float[] diam= new float [count];
 void setup() {
   //set size of canvas
-  size(800,600);
+  size(1300,800);
     int i=0;
   while (i < count) {
     //initialize variables
     x[i] = random(width);
     y[i] = random(height);
-    diam[i] = random(40);
+    diam[i] = random(20);
     velX[i] = random(-20, 20);
     velY[i] = random(-20, 20);
     i++;
