@@ -9,11 +9,10 @@ float[] diam= new float [count];
 void setup() {
   //set size of canvas
   size(800,600);
-  
-  int i=0;
+    int i=0;
   while (i < count) {
     //initialize variables
-    x[i] = width/2;
+    x[i] = random(width);
     y[i] = random(height);
     diam[i] = random(40);
     velX[i] = random(-20, 20);
@@ -33,7 +32,7 @@ void draw() {
 
 void drawcircle() {
   int i =0;
-    while (i<count) {
+  for(i=0;i<count;i++) {
   fill(random(255),random(255),random(255));
    //draw ball
 
@@ -54,7 +53,5 @@ void drawcircle() {
     } else if (y[i] - diam[i]/2 <= 0) {
       velY[i] = abs(velY[i]);
     }
-  
-  i++;
-  }
+   }
 }
